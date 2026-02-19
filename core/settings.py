@@ -33,12 +33,10 @@ ALLOWED_HOSTS = ['*']  # Permet toutes les adresses (à utiliser avec précautio
 CORS_ALLOW_ALL_ORIGINS = True  # Notez bien le nom : ALLOW_ALL_ORIGINS Permet toutes les origines (à utiliser avec précaution en production)
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Si vous avez un front-end React/Vue
-    "http://127.0.0.1:3000",
-    "https://your-frontend-url.vercel.app",  # Remplacez par l'URL de votre front-end déployé
-    "http://localhost:8000",  # Si vous testez avec un front-end local
-    "http://beapc:3000",  # Si vous testez avec un front-end local
-]   
+    "http://localhost:3000", # Ton frontend local 
+    "http://127.0.0.1:3000", # Alternative pour localhost
+    "http://beapc:3000", # Si tu utilises Docker et que ton frontend s'appelle "beapc" dans le réseau Docker
+] 
 
 # Application definition
 
