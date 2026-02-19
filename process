@@ -10,6 +10,7 @@ django-admin startapp backend
 npx create-next-app@latest frontend
 
 pip install Pillow
+ pip install django-filter
 
 Initialisez Git et envoyez le code :
     Bash

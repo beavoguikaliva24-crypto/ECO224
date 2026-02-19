@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework', # Si tu utilises Django Rest Framework
     'rest_framework_simplejwt',
+    'django_filters',
 ] 
 
 # 2. Configure DRF pour utiliser JWT
