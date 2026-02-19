@@ -9,6 +9,8 @@ django-admin startapp backend
 
 npx create-next-app@latest frontend
 
+pip install Pillow
+
 Initialisez Git et envoyez le code :
     Bash
     git init
@@ -26,3 +28,12 @@ git status                          "Vérifier ce qui a changé (Optionnel mais 
 git add .                           "À chaque modif	Pour sélectionner vos changements."
 git commit -m "mise a jour"         "À chaque modif	Pour enregistrer l'historique localement."
 git push origin main                "Souvent	Pour sauvegarder votre travail sur Internet (GitHub)."
+
+# Dans le dossier backend avec venv activé
+pip freeze > requirements.txt
+
+# Retour à la racine eco1
+cd ..
+git add .
+git commit -m "Setup: SimpleJWT config et structure urls / Config: Gestion des fichiers media et Pillow / Model: Ajout du champ photo pour les élèves"
+git push origin main
