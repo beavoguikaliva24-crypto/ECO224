@@ -45,5 +45,5 @@ pip freeze > requirements.txt
 # Retour à la racine eco1
 cd ..
 git add .
-git commit -m "Security: Ajout du middleware et de la page de login"
+git commit -m "UI: Création du layout Dashboard avec Sidebar et Stats"
 git push origin main
