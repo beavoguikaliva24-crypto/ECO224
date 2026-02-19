@@ -4,37 +4,39 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import *
 from .serializers import *
-from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth.hashers import check_password
 
+# Importe ton modèle TableUtilisateur
 class LoginView(APIView):
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
 
         try:
-            # Recherche de l'utilisateur
-            user = TableUtilisateur.objects.get(username=username, password=password)
-            
+            # On cherche l'utilisateur dans ta table personnalisée
+            user = TableUtilisateur.objects.get(username=username)
+
+            # Vérification du mot de passe
+            if not check_password(password, user.password):
+                return Response({"error": "Identifiants incorrects"}, status=status.HTTP_401_UNAUTHORIZED)
+
+            # Vérification du statut
             if user.statut == 'Off':
                 return Response({"error": "Compte inactif"}, status=status.HTTP_403_FORBIDDEN)
 
-            # Génération manuelle du Token JWT
-            refresh = RefreshToken.for_user(user)
-
+            # RÉPONSE SANS TOKEN
             return Response({
-                "access": str(refresh.access_token),
-                "refresh": str(refresh),
+                "message": "Connexion réussie",
                 "user": {
                     "username": user.username,
                     "nom": user.nom,
-                    "prenom": user.prenom,
                     "role": user.role.role if user.role else "Utilisateur"
                 }
             }, status=status.HTTP_200_OK)
 
         except TableUtilisateur.DoesNotExist:
             return Response({"error": "Identifiants incorrects"}, status=status.HTTP_401_UNAUTHORIZED)
-
+        
 # Utilisation de ModelViewSet pour gérer automatiquement le CRUD
 class AnneeViewSet(viewsets.ModelViewSet):
     queryset = TableAnnee.objects.all()

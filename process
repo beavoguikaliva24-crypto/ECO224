@@ -5,6 +5,7 @@ pip install django djangorestframework django-cors-headers
 pip install djangorestframework django-cors-headers django-filter
 pip install django-filter
 pip install djangorestframework-simplejwt
+pip uninstall djangorestframework-simplejwt
 
 django-admin startproject core .
 
@@ -47,3 +48,14 @@ cd ..
 git add .
 git commit -m "UI: Création du layout Dashboard avec Sidebar et Stats"
 git push origin main
+
+
+Method Not Allowed: /api/token/
+[19/Feb/2026 12:14:36] "GET /api/token/ HTTP/1.1" 405 7706 
+
+[19/Feb/2026 12:38:14] "POST /api/login/ HTTP/1.1" 401 35
+Unauthorized: /api/token/
+[19/Feb/2026 12:39:42] "POST /api/token/ HTTP/1.1" 401 63
+
+Unauthorized: /api/login/
+[19/Feb/2026 12:52:57] "POST /api/login/ HTTP/1.1" 401 35

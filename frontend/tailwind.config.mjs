@@ -1,19 +1,19 @@
 import type { Config } from "tailwindcss";
-import daisyui from "daisyui"; // Import moderne
+import daisyui from "daisyui";
 
-/** @type {import('tailwindcss').Config} */
 const config: Config = {
+  // Vérifie que ces chemins correspondent bien à ton arborescence (image 2df61c.png)
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}", 
   ],
   theme: {
     extend: {},
   },
-  plugins: [daisyui], // Utilise la variable importée
+  plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light", "dark", "cupcake"],
+    themes: ["light", "dark"],
   },
 };
 

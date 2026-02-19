@@ -2,29 +2,40 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  // On récupère le token depuis les cookies (plus sécurisé pour le middleware)
   const token = request.cookies.get('access_token')?.value;
-
-  const isAuthPage = request.nextUrl.pathname.startsWith('/login');
+  const { pathname } = request.nextUrl;
+  // 1. Définition des zones
+  const isAuthPage = pathname.startsWith('/login');
   const isProtectedRoute = 
-    request.nextUrl.pathname.startsWith('/eleves') || 
-    request.nextUrl.pathname.startsWith('/classes') || 
-    request.nextUrl.pathname.startsWith('/recouvrement') || 
-    request.nextUrl.pathname.startsWith('/scolarites') ||
-    request.nextUrl.pathname.startsWith('/dashboard');
-
+    pathname.startsWith('/dashboard') || 
+    pathname.startsWith('/eleves') || 
+    pathname.startsWith('/classes') || 
+    pathname.startsWith('/recouvrement') || 
+    pathname.startsWith('/scolarites');
+  // 2. Logique pour la racine '/'
+  if (pathname === '/') {
+    return NextResponse.redirect(new URL(token ? '/dashboard' : '/login', request.url));
+  }
+  // 3. Protection des routes : Si pas de token -> vers login
   if (isProtectedRoute && !token) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
+  // 4. Empêcher l'accès au login si déjà connecté
   if (isAuthPage && token) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
-
   return NextResponse.next();
 }
-
-// Routes sur lesquelles le middleware s'applique
+// 5. Configuration du Matcher
 export const config = {
-  matcher: ['/dashboard/:path*', '/eleves/:path*', '/classes/:path*', '/login'],
+  matcher: [
+    '/',
+    '/login',
+    '/dashboard/:path*',
+    '/eleves/:path*',
+    '/classes/:path*',
+    '/recouvrement/:path*',
+    '/scolarites/:path*',
+  ],
 };

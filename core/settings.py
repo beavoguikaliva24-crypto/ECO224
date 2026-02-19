@@ -36,6 +36,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", # Ton frontend local 
     "http://127.0.0.1:3000", # Alternative pour localhost
     "http://beapc:3000", # Si tu utilises Docker et que ton frontend s'appelle "beapc" dans le réseau Docker
+    "http://10.15.8.105:3000", # Ton IP doit être ici
 ] 
 
 # Application definition
@@ -51,16 +52,16 @@ INSTALLED_APPS = [
     'backend.apps.BackendConfig', # Ton application
     'corsheaders',
     'rest_framework', # Si tu utilises Django Rest Framework
-    'rest_framework_simplejwt',
+    #'rest_framework_simplejwt',
     'django_filters',
 ] 
 
 # 2. Configure DRF pour utiliser JWT
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-}
+#REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+#        'rest_framework_simplejwt.authentication.JWTAuthentication',
+#    )
+#}
 
 # 3. Paramètres SimpleJWT (Optionnel mais recommandé)
 SIMPLE_JWT = {
