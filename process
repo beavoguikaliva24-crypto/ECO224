@@ -2,6 +2,9 @@ python -m venv venv
 source venv/bin/activate  # Sur Windows: venv\Scripts\activate
 
 pip install django djangorestframework django-cors-headers
+pip install djangorestframework django-cors-headers django-filter
+pip install django-filter
+pip install djangorestframework-simplejwt
 
 django-admin startproject core .
 
@@ -11,6 +14,7 @@ npx create-next-app@latest frontend
 
 pip install Pillow
  pip install django-filter
+ pip install djangorestframework-simplejwt
 
 Initialisez Git et envoyez le code :
     Bash
@@ -36,5 +40,6 @@ pip freeze > requirements.txt
 # Retour à la racine eco1
 cd ..
 git add .
-git commit -m "Setup: SimpleJWT config et structure urls / Config: Gestion des fichiers media et Pillow / Model: Ajout du champ photo pour les élèves"
+git commit -m "gestion connection distantes CORS_ALLOWED_ORIGINS CORS_ALLOW_ALL_ORIGINS ALLOWED_HOSTS"
 git push origin main
+

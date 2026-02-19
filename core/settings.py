@@ -27,8 +27,18 @@ SECRET_KEY = 'django-insecure-kvr9tv4h(x1zvt-s_zj1vy$h)rcb*4zd7)3xd)s6gk(0v-!sdi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']  # Permet toutes les adresses (à utiliser avec précaution en production)
+# Autorise ton frontend local (et plus tard ton URL Vercel)
+# 2. Pour que Next.js puisse communiquer avec Django
+CORS_ALLOW_ALL_ORIGINS = True  # Notez bien le nom : ALLOW_ALL_ORIGINS Permet toutes les origines (à utiliser avec précaution en production)
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Si vous avez un front-end React/Vue
+    "http://127.0.0.1:3000",
+    "https://your-frontend-url.vercel.app",  # Remplacez par l'URL de votre front-end déployé
+    "http://localhost:8000",  # Si vous testez avec un front-end local
+    "http://beapc:3000",  # Si vous testez avec un front-end local
+]   
 
 # Application definition
 
@@ -75,13 +85,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-# Autorise ton frontend local (et plus tard ton URL Vercel)
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://beapc:3000",
 ]
 
 ROOT_URLCONF = 'core.urls'
