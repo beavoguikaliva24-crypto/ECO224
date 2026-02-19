@@ -45,6 +45,5 @@ pip freeze > requirements.txt
 # Retour à la racine eco1
 cd ..
 git add .
-git commit -m "Frontend: Ajout manuel de tailwind.config.mjs avec daisyUI"
+git commit -m "Fix: Conversion de la page Home en Client Component et config tailwind"
 git push origin main
-

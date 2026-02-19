@@ -1,17 +1,19 @@
-import daisyui from "daisyui"
+import type { Config } from "tailwindcss";
+import daisyui from "daisyui"; // Import moderne
 
 /** @type {import('tailwindcss').Config} */
-const config = {
+const config: Config = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {},
   },
-  plugins: [daisyui],
+  plugins: [daisyui], // Utilise la variable importée
   daisyui: {
-    themes: ["light", "dark"],
+    themes: ["light", "dark", "cupcake"],
   },
 };
 
